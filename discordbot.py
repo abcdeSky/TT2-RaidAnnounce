@@ -2,7 +2,6 @@ from discord.ext import commands, tasks
 import os
 import traceback
 
-
 bot = commands.Bot(command_prefix='/')
 token = os.environ['DISCORD_BOT_TOKEN']
 
@@ -26,5 +25,5 @@ async def ping(ctx):
     await ctx.send('pong')
     await slow_count.start()
 
-slow_count.start()
 bot.run(token)
+slow_count.start()
