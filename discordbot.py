@@ -13,7 +13,7 @@ async def on_command_error(ctx, error):
     error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
     await ctx.send(error_msg)
 
-@tasks.loop(seconds=5.0, count=5)
+@tasks.loop(seconds=5.0, count=1)
 async def slow_count():
     print(slow_count.current_loop)
 
@@ -26,4 +26,5 @@ async def ping(ctx):
     await ctx.send('pong')
     await slow_count.start()
 
+slow_count.start()
 bot.run(token)
