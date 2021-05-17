@@ -33,7 +33,7 @@ async def ping(ctx):
     await ctx.send('pong')
 
 @bot.command()
-async def repeat(ctx, times : int, hour : int, min : int, content='repeating...'):
+async def raidstart(ctx, times : int, hour : int, min : int, content='repeating...'):
     """Repeats a message multiple times."""
     now = datetime.now()
     now = datetime(now.year, now.month, now.day, now.hour, now.minute, 0)
@@ -46,22 +46,19 @@ async def repeat(ctx, times : int, hour : int, min : int, content='repeating...'
     #    scheduler.run()
     #else:
     #    print "do nothing"
+    await ctx.send(hour+"時"+min+"分後（"+comp+"）にレイドが始まります！出陣準備...")
 
     time.sleep(diff.seconds)
 
     for i in range(times):
-        await ctx.send(content)
+        now = datetime.now()
+        next = datetime(now.year, now.month, now.day, now.hour + 12, now.minute, 0)
+        await ctx.send("レイド攻撃回復。いざ出陣！")
+        await ctx.send("次は"+next+"に始まります。")
         time.sleep(12)
 
-@tasks.loop(seconds=5.0, count=5)
-async def slow_count():
-    print(slow_count.current_loop)
-
-@slow_count.after_loop
-async def after_slow_count():
-    print('done!')
-
-slow_count.start()
-
+async def close(ctx):
+    await bot.close()
+    print("レイド終了！お疲れさまでした")
 
 bot.run(token)
