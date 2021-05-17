@@ -1,8 +1,9 @@
 import discord
-from discord.ext import commands
+from discord.ext import commands, tasks
 import os
 import traceback
 import random
+import time
 
 description = '''An example bot to showcase the discord.ext.commands extension
 module.
@@ -28,10 +29,25 @@ async def ping(ctx):
     await ctx.send('pong')
 
 @bot.command()
-async def repeat(ctx, times : int, content='repeating...'):
+async def repeat(ctx, times : int, interval : int, content='repeating...'):
     """Repeats a message multiple times."""
     for i in range(times):
         await ctx.send(content)
+        time.sleep(interval)
+
+@tasks.loop(seconds=5.0, count=5)
+async def slow_count():
+    print(slow_count.current_loop)
+
+@slow_count.after_loop
+async def after_slow_count():
+    print('done!')
+    
+@bot.command()
+async def count(ctx):
+    slow_count.start()
+
+#slow_count.start()
 
 
 bot.run(token)
