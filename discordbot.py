@@ -35,7 +35,7 @@ async def ping(ctx):
 @bot.command()
 async def raidstart(ctx, times : int, hour : int, min : int, content='repeating...'):
     """Repeats a message multiple times."""
-    now = datetime.now()
+    now = datetime.datetime.now()
     now = datetime(now.year, now.month, now.day, now.hour, now.minute, 0)
     now = now + datetime.timedelta(hours=9)
     minutes = hour*60 + min
@@ -47,7 +47,8 @@ async def raidstart(ctx, times : int, hour : int, min : int, content='repeating.
     time.sleep(diff.seconds)
 
     for i in range(times):
-        now = datetime.now()
+        now = datetime.datetime.now()
+        now = datetime(now.year, now.month, now.day, now.hour, now.minute, 0)
         now = now + datetime.timedelta(hours=9)
         minutes = 12 * 60
         next = now + datetime.timedelta(minutes=minutes)
