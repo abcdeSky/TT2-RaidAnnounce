@@ -6,6 +6,7 @@ import random
 from datetime import datetime, timedelta
 import sched
 import time
+from pytz import timezone
 
 description = '''An example bot to showcase the discord.ext.commands extension
 module.
