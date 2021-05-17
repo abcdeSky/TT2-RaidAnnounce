@@ -33,7 +33,7 @@ async def repeat(times : int, content='repeating...'):
     print(times)
     print(type(times))
     #for i in range(times):
-    await bot.say(content)
+    await bot.send(content)
 
 
 bot.run(token)
