@@ -6,7 +6,6 @@ import random
 from datetime import datetime, timedelta
 import sched
 import time
-from pytz import timezone
 
 description = '''An example bot to showcase the discord.ext.commands extension
 module.
@@ -36,8 +35,9 @@ async def ping(ctx):
 @bot.command()
 async def raidstart(ctx, times : int, hour : int, min : int, content='repeating...'):
     """Repeats a message multiple times."""
-    now = datetime.now(timezone('Asia/Tokyo'))
+    now = datetime.now()
     now = datetime(now.year, now.month, now.day, now.hour, now.minute, 0)
+    now = now + datetime.timedelta(hours=9)
     minutes = hour*60 + min
     comp = now + datetime.timedelta(minutes=minutes)
     diff = comp - now
@@ -47,7 +47,8 @@ async def raidstart(ctx, times : int, hour : int, min : int, content='repeating.
     time.sleep(diff.seconds)
 
     for i in range(times):
-        now = datetime.now(timezone('Asia/Tokyo'))
+        now = datetime.now()
+        now = now + datetime.timedelta(hours=9)
         minutes = 12 * 60
         next = now + datetime.timedelta(minutes=minutes)
         await ctx.send("レイド攻撃回復。いざ出陣！")
