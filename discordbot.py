@@ -13,8 +13,7 @@ There are a number of utility commands being showcased here.'''
 bot = commands.Bot(command_prefix='?', description=description)
 token = os.environ['DISCORD_BOT_TOKEN']
 
-def def1(name):
-    print name
+
 
 @bot.event
 async def on_ready():
@@ -41,12 +40,14 @@ async def repeat(ctx, times : int, hour : int, min : int, content='repeating...'
     comp = datetime(now.year, now.month, now.day, now.hour + hour, now.minute + min, 0)
     diff = comp - now
 
-    if int(diff.days) >= 0:
-        scheduler = sched.scheduler(time.time, time.sleep)
-        scheduler.enter(diff.seconds, 1, def1, ("hoge", ))
-        scheduler.run()
-    else:
-        print "do nothing"
+    #if int(diff.days) >= 0:
+    #    scheduler = sched.scheduler(time.time, time.sleep)
+    #    scheduler.enter(diff.seconds, 1, def1, ("hoge", ))
+    #    scheduler.run()
+    #else:
+    #    print "do nothing"
+
+    time.sleep(diff.seconds)
 
     for i in range(times):
         await ctx.send(content)
