@@ -39,7 +39,7 @@ async def raidstart(ctx, times : int, hour : int, min : int, content='repeating.
     now = datetime.now(timezone('Asia/Tokyo'))
     now = datetime(now.year, now.month, now.day, now.hour, now.minute, 0)
     minutes = hour*60 + min
-    comp = now + datetime.timdelta(minutes=minutes)
+    comp = now + datetime.timedelta(minutes=minutes)
     diff = comp - now
 
     await ctx.send(str(hour)+"時"+str(min)+"分後（"+str(comp)+"）にレイドが始まります！出陣準備...")
