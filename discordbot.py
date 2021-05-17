@@ -31,7 +31,7 @@ async def ping(ctx):
 async def repeat(times : int, content='repeating...'):
     """Repeats a message multiple times."""
     print(times)
-    print(typeof(times))
+    print(type(times))
     for i in range(times):
         await bot.say(content)
 
