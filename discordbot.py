@@ -52,7 +52,7 @@ async def raidstart(ctx, times : int, hour : int, min : int, content='repeating.
         now = now + timedelta(hours=9)
         next = now + timedelta(hours=12)
         await ctx.send("レイド第"+str(i+1)+"戦。いざ出陣！\n"+"次は__**"+next.strftime('%m月%d日 %H:%M')+"**__に始まります。")
-        time.sleep(12)
+        time.sleep(12*60*60)
 
 @bot.command()
 async def close(ctx):
