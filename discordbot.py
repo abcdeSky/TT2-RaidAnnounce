@@ -50,7 +50,7 @@ async def repeat(ctx, times : int, hour : int, min : int, content='repeating...'
 
     for i in range(times):
         await ctx.send(content)
-        time.sleep(interval)
+        time.sleep(12)
 
 @tasks.loop(seconds=5.0, count=5)
 async def slow_count():
