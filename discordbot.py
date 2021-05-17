@@ -3,7 +3,7 @@ from discord.ext import commands, tasks
 import os
 import traceback
 import random
-from datetime import datetime
+from datetime import datetime, timedelta
 import sched
 import time
 
@@ -37,9 +37,9 @@ async def raidstart(ctx, times : int, hour : int, min : int, content='repeating.
     """Repeats a message multiple times."""
     now = datetime.now()
     now = datetime(now.year, now.month, now.day, now.hour, now.minute, 0)
-    now = now + datetime.timedelta(hours=9)
+    now = now + timedelta(hours=9)
     minutes = hour*60 + min
-    comp = now + datetime.timedelta(minutes=minutes)
+    comp = now + timedelta(minutes=minutes)
     diff = comp - now
 
     await ctx.send(str(hour)+"時"+str(min)+"分後（"+str(comp)+"）にレイドが始まります！出陣準備...")
@@ -49,9 +49,9 @@ async def raidstart(ctx, times : int, hour : int, min : int, content='repeating.
     for i in range(times):
         now = datetime.now()
         now = datetime(now.year, now.month, now.day, now.hour, now.minute, 0)
-        now = now + datetime.timedelta(hours=9)
+        now = now + timedelta(hours=9)
         minutes = 12 * 60
-        next = now + datetime.timedelta(minutes=minutes)
+        next = now + timedelta(minutes=minutes)
         await ctx.send("レイド攻撃回復。いざ出陣！")
         await ctx.send("次は"+str(next)+"に始まります。")
         time.sleep(12)
