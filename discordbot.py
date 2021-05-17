@@ -46,7 +46,7 @@ async def raidstart(ctx, times : int, hour : int, min : int, content='repeating.
     #    scheduler.run()
     #else:
     #    print "do nothing"
-    await ctx.send(hour+"時"+min+"分後（"+comp+"）にレイドが始まります！出陣準備...")
+    await ctx.send(str(hour)+"時"+str(min)+"分後（"+str(comp)+"）にレイドが始まります！出陣準備...")
 
     time.sleep(diff.seconds)
 
@@ -54,9 +54,10 @@ async def raidstart(ctx, times : int, hour : int, min : int, content='repeating.
         now = datetime.now()
         next = datetime(now.year, now.month, now.day, now.hour + 12, now.minute, 0)
         await ctx.send("レイド攻撃回復。いざ出陣！")
-        await ctx.send("次は"+next+"に始まります。")
+        await ctx.send("次は"+str(next)+"に始まります。")
         time.sleep(12)
 
+@bot.command()
 async def close(ctx):
     await bot.close()
     print("レイド終了！お疲れさまでした")
